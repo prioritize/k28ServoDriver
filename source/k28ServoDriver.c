@@ -47,7 +47,7 @@
  * @brief   Application entry point.
  */
 int main(void) {
-
+    // Adding a comment to determine if the switch from https to ssh was successful.
   	/* Init board hardware. */
     BOARD_InitBootPins();
     BOARD_InitBootClocks();
