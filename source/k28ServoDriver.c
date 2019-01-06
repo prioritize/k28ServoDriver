@@ -55,8 +55,13 @@ int main(void) {
   	/* Init FSL debug console. */
     BOARD_InitDebugConsole();
 
-    PRINTF("Hello World\n");
+    PRINTF("Hello World\n\r");
 
+    // Initialize the red LED to be used and initially set to a 0
+    LED_BLUE_INIT(0);
+    // Turn the red led on
+    LED_BLUE_ON();
+    // FTM3->SC |= (0x7 << FTM_SC_PS_MASK);
     /* Force the counter to be placed into memory. */
     volatile static int i = 0 ;
     /* Enter an infinite loop, just incrementing a counter. */
