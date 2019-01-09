@@ -49,7 +49,7 @@
 int main(void) {
     // Adding a comment to determine if the switch from https to ssh was successful.
   	/* Init board hardware. */
-    BOARD_InitBootPins();
+	 BOARD_InitBootPins();
     BOARD_InitBootClocks();
     BOARD_InitBootPeripherals();
   	/* Init FSL debug console. */
@@ -63,10 +63,16 @@ int main(void) {
     LED_BLUE_ON();
     // FTM3->SC |= (0x7 << FTM_SC_PS_MASK);
     /* Force the counter to be placed into memory. */
+    // Attempt to initialize PTC18 to a 1
+    GPIOC->PSOR = (1U << 18U);
+    GPIOC->PDDR |= (1U << 18U);
     volatile static int i = 0 ;
     /* Enter an infinite loop, just incrementing a counter. */
     while(1) {
-        i++ ;
+        // i++;
+        // if(i%1 == 0){
+          GPIOC->PTOR = (1U << 18);
+        // }
     }
     return 0 ;
 }

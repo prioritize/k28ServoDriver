@@ -192,9 +192,10 @@ void BOARD_InitBootPins(void)
 BOARD_InitPins:
 - options: {callFromInitBoot: 'true', prefix: BOARD_, coreID: core0, enableClock: 'true'}
 - pin_list:
-  - {pin_num: E2, peripheral: FTM3, signal: 'CH, 1', pin_signal: PTE6/LLWU_P16/FXIO0_D12/LPUART3_CTS_b/I2S0_MCLK/QSPI0B_DATA3/FTM3_CH1/SDHC0_D4, identifier: ''}
+  - {pin_num: D7, peripheral: GPIOC, signal: 'GPIO, 18', pin_signal: PTC18/LPUART3_RTS_b/FB_TBST_b/FB_CS2_b/FB_BE15_8_BLS23_16_b/SDRAM_DQM1}
   - {pin_num: E3, peripheral: GPIOE, signal: 'GPIO, 7', pin_signal: PTE7/FXIO0_D13/LPUART3_RTS_b/I2S0_RXD0/QSPI0B_SCLK/FTM3_CH2/QSPI0A_SS1_B, identifier: ''}
   - {pin_num: E4, peripheral: GPIOE, signal: 'GPIO, 8', pin_signal: PTE8/I2S0_RXD1/FXIO0_D14/I2S0_RX_FS/QSPI0B_DATA0/FTM3_CH3/SDHC0_D5, identifier: ''}
+  - {pin_num: E2, peripheral: FTM3, signal: 'CH, 1', pin_signal: PTE6/LLWU_P16/FXIO0_D12/LPUART3_CTS_b/I2S0_MCLK/QSPI0B_DATA3/FTM3_CH1/SDHC0_D4, identifier: ''}
  * BE CAREFUL MODIFYING THIS COMMENT - IT IS YAML SETTINGS FOR TOOLS ***********
  */
 /* clang-format on */
@@ -207,8 +208,13 @@ BOARD_InitPins:
  * END ****************************************************************************************************************/
 void BOARD_InitPins(void)
 {
+    /* Port C Clock Gate Control: Clock enabled */
+    CLOCK_EnableClock(kCLOCK_PortC);
     /* Port E Clock Gate Control: Clock enabled */
     CLOCK_EnableClock(kCLOCK_PortE);
+
+    /* PORTC18 (pin D7) is configured as PTC18 */
+    PORT_SetPinMux(PORTC, 18U, kPORT_MuxAsGpio);
 
     /* PORTE6 (pin E2) is configured as FTM3_CH1 */
     PORT_SetPinMux(PORTE, 6U, kPORT_MuxAlt6);

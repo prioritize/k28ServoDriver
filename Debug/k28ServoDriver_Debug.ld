@@ -6,7 +6,7 @@
  * Generated linker script file for MK28FN2M0xxx15
  * Created from linkscript.ldt by FMCreateLinkLibraries
  * Using Freemarker v2.3.23
- * MCUXpresso IDE v10.3.0 [Build 2200] [2018-12-03] on Jan 4, 2019 10:45:10 PM
+ * MCUXpresso IDE v10.3.0 [Build 2200] [2018-12-03] on Jan 8, 2019 4:50:54 PM
  */
 
 INCLUDE "k28ServoDriver_Debug_library.ld"
